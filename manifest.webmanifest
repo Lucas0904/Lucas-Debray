@@ -1,0 +1,10 @@
+{
+  "name": "La bastide",
+  "short_name": "Bastide",
+  "start_url": "./",
+  "display": "standalone",
+  "background_color": "#F2F3EF",
+  "theme_color": "#3C6A7D",
+  "lang": "fr",
+  "icons": [{ "src": "icon.svg", "sizes": "any", "type": "image/svg+xml" }]
+}

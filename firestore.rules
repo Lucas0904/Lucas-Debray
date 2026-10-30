@@ -1,0 +1,17 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // Une liste n'est lisible et modifiable que si l'on connaît son code (présent dans le lien partagé).
+    match /listes/{liste}/taches/{tache} {
+      allow read, delete: if liste.size() >= 16;
+      allow create, update: if liste.size() >= 16
+        && request.resource.data.keys().hasOnly(['t', 'when', 'done', 'n'])
+        && request.resource.data.t is string
+        && request.resource.data.t.size() > 0
+        && request.resource.data.t.size() <= 140
+        && request.resource.data.when in ['', 'soir', 'matin', 'geraldine', 'depart']
+        && request.resource.data.done is bool
+        && request.resource.data.n is number;
+    }
+  }
+}
